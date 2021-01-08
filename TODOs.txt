@@ -1,0 +1,12 @@
+
+Tüm sistem tek bir script ile çalıştırılabilir olmalıdır. Exec.bat iş görür ama onun öncesinde tüm containerları, imageları silip yeniden oluşturacak bir opsiyon eklenebilir.
+
+Slave sayısı parametrik olarak scale edilebilir olmalıdır.
+
+test.jmx içindeki influxdb ip adresi dinamik olarak doldurulmalıdır.
+
+grafana dashboardları otomatik olarak sisteme eklenebilmelidir.
+
+Tum containerlar için statik Ip tanımlaması yapılabilir. IP Spoofing örneği güzel olur.
+
+Sisteme portainer yada swarm tarzı bir şey eklenerek birden fazla docker daemon üzerinde çalıştırılabilir olmalıdır.

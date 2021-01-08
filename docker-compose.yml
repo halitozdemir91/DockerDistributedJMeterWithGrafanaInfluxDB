@@ -1,0 +1,46 @@
+version: '3.2'
+
+services:
+  influxdb:
+    build: influxdb
+    networks:
+      - jmeter-network
+    env_file: configuration.env
+    ports:
+      - '8086:8086'
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+  grafana:
+    build: grafana
+    networks:
+      - jmeter-network
+    env_file: configuration.env
+    links:
+      - influxdb
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana_data:/var/lib/grafana
+  master:
+    build: ./master
+    container_name: master
+    tty: true
+    networks:
+      - jmeter-network
+  slave-1:
+    build: ./slave
+    container_name: slave-1
+    networks:
+      - jmeter-network
+  slave-2:
+    build: ./slave
+    container_name: slave-2
+    networks:
+      - jmeter-network
+
+volumes:
+  grafana_data: {}
+  influxdb_data: {}
+networks:
+  jmeter-network:
+    driver: bridge
